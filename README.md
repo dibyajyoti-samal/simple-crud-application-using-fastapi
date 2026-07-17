@@ -227,8 +227,4 @@ CTRL + C
 
 ## Author
 
-Your Name
-
-## License
-
-MIT License
+Dibyajyoti samal
