@@ -11,6 +11,9 @@ class Data(BaseModel):
     name:str
     age:int
 
+class Updateage(BaseModel):
+    age:int
+
 
 def get_users_detail(collection=Depends(get_collection)):
     return list(collection.find({}))
@@ -57,5 +60,15 @@ def del_user(name:str,collection=Depends(get_collection)):
             "message":"user not delete"
         }
 
+@app.put("/updateuser")
+def update_age(name:str,age:Updateage,collection=Depends(get_collection)):
+    result=collection.update_one({"name":name},{"$set":{"age":age.age}})
 
+    if result.matched_count == 0:
+        return{
+            "Mesaage":"User not found"
+        }
+    return{
+        "Message":"User Update successfully"
+    }
 
